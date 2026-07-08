@@ -1,6 +1,5 @@
 module PGenieGen.Model.Input.Name where
 
-import Data.Aeson qualified as Aeson
 import Data.Text (Text)
 import Dhall qualified
 import PGenieGen.Dhall.Orphans ()
@@ -19,36 +18,3 @@ data Name = Name
   }
   deriving stock (Show, Eq, Generic)
   deriving anyclass (Dhall.ToDhall, Dhall.FromDhall)
-
-instance Aeson.ToJSON Name where
-  toJSON (Name cc pc kc tc skc sc csc ssc) =
-    Aeson.object
-      [ "inCamelCase" Aeson..= cc,
-        "inPascalCase" Aeson..= pc,
-        "inKebabCase" Aeson..= kc,
-        "inTrainCase" Aeson..= tc,
-        "inScreamingKebabCase" Aeson..= skc,
-        "inSnakeCase" Aeson..= sc,
-        "inCamelSnakeCase" Aeson..= csc,
-        "inScreamingSnakeCase" Aeson..= ssc
-      ]
-
-instance Aeson.FromJSON Name where
-  parseJSON = Aeson.withObject "Name" \obj ->
-    Name
-      <$> obj
-      Aeson..: "inCamelCase"
-      <*> obj
-      Aeson..: "inPascalCase"
-      <*> obj
-      Aeson..: "inKebabCase"
-      <*> obj
-      Aeson..: "inTrainCase"
-      <*> obj
-      Aeson..: "inScreamingKebabCase"
-      <*> obj
-      Aeson..: "inSnakeCase"
-      <*> obj
-      Aeson..: "inCamelSnakeCase"
-      <*> obj
-      Aeson..: "inScreamingSnakeCase"

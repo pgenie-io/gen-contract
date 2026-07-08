@@ -4,12 +4,11 @@ module PGenieGen.Model.Input
   )
 where
 
-import AesonDeriver qualified
 import Dhall qualified
 import PGenieGen.Dhall.Deriving qualified as Dhall.Deriving
 import PGenieGen.Dhall.Orphans ()
 import PGenieGen.Model.Input.Name (Name (..))
-import PGenieGen.Prelude hiding (Version, Word)
+import PGenieGen.Prelude hiding (Version)
 
 -- | Version with semantic versioning components
 data Version = Version
@@ -264,7 +263,7 @@ data QueryFragment
 -- | A query with name, source path, parameters, result, and fragments
 data Query = Query
   { name :: Name,
-    srcPath :: Path,
+    srcPath :: Text,
     identity :: Bool,
     idempotent :: Bool,
     params :: [Member],
@@ -293,22 +292,3 @@ data Project = Project
   deriving stock (Show, Eq, Generic)
   deriving anyclass (Dhall.ToDhall, Dhall.FromDhall)
 
-AesonDeriver.derive
-  [ ''Version,
-    ''Primitive,
-    ''Scalar,
-    ''ArraySettings,
-    ''Value,
-    ''Member,
-    ''EnumVariant,
-    ''CustomTypeDefinition,
-    ''CustomType,
-    ''ResultRowsCardinality,
-    ''ResultRows,
-    ''Result,
-    ''Var,
-    ''QueryFragment,
-    ''Query,
-    ''Project,
-    ''Migration
-  ]

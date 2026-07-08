@@ -1,34 +1,19 @@
--- Function for constructing standard Codegen modules.
+-- Function for constructing standard pGenie generator modules.
 -- Takes a contract version, a config type, and a compile function,
 -- and returns a module with those components.
-let Prelude = ./Deps/Prelude.dhall
-
-let Lude = ./Deps/Lude.dhall
-
 let Project = ./Project.dhall
 
 let contractVersion = { major = 4, minor = 0 }
 
+let Report = { path : List Text, message : Text }
+
+let File = { path : Text, content : Text }
+
+let Output =
+      < Ok : { warnings : List Report, value : List File } | Err : Report >
+
 in  \(Config : Type) ->
     \ ( compile
-      : Optional Config -> Project.Project -> Lude.Compiled.Type Lude.Files.Type
+      : Optional Config -> Project.Project -> Output
       ) ->
-      let compileToFileMap
-          -- Helper for immediately compiling a project to a file map.
-          : Optional Config -> Project.Project -> Prelude.Map.Type Text Text
-          = \(config : Optional Config) ->
-            \(project : Project.Project) ->
-              let compiledFiles = compile config project
-
-              let compiledFileMap =
-                    Lude.Compiled.map
-                      Lude.Files.Type
-                      (Prelude.Map.Type Text Text)
-                      Lude.Files.toFileMap
-                      compiledFiles
-
-              let fileMap = Lude.Compiled.toFileMap compiledFileMap
-
-              in  fileMap
-
-      in  { contractVersion, Config, compile, compileToFileMap }
+      { contractVersion, Config, compile }

@@ -7,11 +7,17 @@ module PGenieGen.Model.Output
 where
 
 import Dhall qualified
-import Dhall.Deriving qualified
 import PGenieGen.Dhall.Deriving qualified as Dhall.Deriving
 import PGenieGen.Dhall.Orphans ()
-import PGenieGen.Model.Output.Report (Report (..))
 import PGenieGen.Prelude
+
+-- | Diagnostic report with a context path and a message.
+data Report = Report
+  { path :: [Text],
+    message :: Text
+  }
+  deriving stock (Generic, Show, Eq)
+  deriving anyclass (Dhall.FromDhall, Dhall.ToDhall)
 
 -- | Successful generator output.
 data OutputOk = OutputOk
@@ -30,7 +36,7 @@ data Output
     via (Dhall.Deriving.Codec (Dhall.Deriving.SumModifier "Output") Output)
 
 data File = File
-  { path :: Path,
+  { path :: Text,
     content :: Text
   }
   deriving stock (Generic, Show, Eq)

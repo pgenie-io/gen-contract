@@ -4,6 +4,7 @@ module Main (main) where
 
 import Data.Either.Validation qualified as Validation
 import Data.Set qualified as Set
+import Data.Text (Text)
 import Dhall qualified
 import Dhall.Core qualified
 import Dhall.Map qualified
@@ -122,13 +123,13 @@ checkUnionAlternatives dhallExpr = do
       dhallAlts `shouldBe` hsAlts
 
 -- | Extract the set of alternative names from a Dhall union type expression.
-unionAlternatives :: Dhall.Core.Expr s a -> Set Text
+unionAlternatives :: Dhall.Core.Expr s a -> Set.Set Text
 unionAlternatives = \case
   Dhall.Core.Union alts -> Set.fromList (Dhall.Map.keys alts)
   _ -> Set.empty
 
 -- | Extract the set of field names from a Dhall record type expression.
-recordFields :: Dhall.Core.Expr s a -> Set Text
+recordFields :: Dhall.Core.Expr s a -> Set.Set Text
 recordFields = \case
   Dhall.Core.Record fields -> Set.fromList (Dhall.Map.keys fields)
   _ -> Set.empty

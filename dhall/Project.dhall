@@ -198,80 +198,10 @@ let Project =
       , migrations : List Migration
       }
 
-let Primitive/toText
-    -- Convert to PostgreSQL type name as text.
-    : Primitive -> Text
-    = let handler =
-            { Bit = "bit"
-            , Bool = "bool"
-            , Box = "box"
-            , Bpchar = "bpchar"
-            , Bytea = "bytea"
-            , Char = "char"
-            , Cidr = "cidr"
-            , Circle = "circle"
-            , Citext = "citext"
-            , Date = "date"
-            , Datemultirange = "datemultirange"
-            , Daterange = "daterange"
-            , Float4 = "float4"
-            , Float8 = "float8"
-            , Hstore = "hstore"
-            , Inet = "inet"
-            , Int2 = "int2"
-            , Int4 = "int4"
-            , Int4multirange = "int4multirange"
-            , Int4range = "int4range"
-            , Int8 = "int8"
-            , Int8multirange = "int8multirange"
-            , Int8range = "int8range"
-            , Interval = "interval"
-            , Json = "json"
-            , Jsonb = "jsonb"
-            , Line = "line"
-            , Lseg = "lseg"
-            , Macaddr = "macaddr"
-            , Macaddr8 = "macaddr8"
-            , Money = "money"
-            , Name = "name"
-            , Numeric = "numeric"
-            , Nummultirange = "nummultirange"
-            , Numrange = "numrange"
-            , Oid = "oid"
-            , Path = "path"
-            , PgLsn = "pg_lsn"
-            , PgSnapshot = "pg_snapshot"
-            , Point = "point"
-            , Polygon = "polygon"
-            , Text = "text"
-            , Time = "time"
-            , Timestamp = "timestamp"
-            , Timestamptz = "timestamptz"
-            , Timetz = "timetz"
-            , Tsmultirange = "tsmultirange"
-            , Tsquery = "tsquery"
-            , Tsrange = "tsrange"
-            , Tstzmultirange = "tstzmultirange"
-            , Tstzrange = "tstzrange"
-            , Tsvector = "tsvector"
-            , Uuid = "uuid"
-            , Varbit = "varbit"
-            , Varchar = "varchar"
-            , Xml = "xml"
-            , Ltree = "ltree"
-            , Geometry = "geometry"
-            , Geography = "geography"
-            , Box2D = "box2d"
-            , Box3D = "box3d"
-            }
-
-      in  \(primitive : Primitive) -> merge handler primitive
-
 in  { Project
     , Version
     , Name
     , Primitive
-    , Primitive/toText
     , Scalar
     , ArraySettings
     , Value

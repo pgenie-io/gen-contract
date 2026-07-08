@@ -1,19 +1,20 @@
 cabal-version: 3.4
-name: pgenie-gen
+name: pgenie-gen-contract
 version: 0
-synopsis: SDK
+synopsis: pGenie generator contract Dhall schema and Haskell model projection
 description:
-homepage: https://github.com/nikita-volkov/pgenie-gen
-bug-reports: https://github.com/nikita-volkov/pgenie-gen/issues
+  Minimal independently versioned repository containing only the pGenie
+  generator contract: the Dhall schema and its Haskell model projection,
+  plus a small integration test that verifies the two stay synchronized.
+homepage: https://github.com/pgenie-io/gen-contract
+bug-reports: https://github.com/pgenie-io/gen-contract/issues
 author: Nikita Volkov <nikita.y.volkov@mail.ru>
 maintainer: Nikita Volkov <nikita.y.volkov@mail.ru>
 copyright: (c) 2025, Nikita Volkov
-extra-source-files:
-  integration-test/Gen.dhall
 
 source-repository head
   type: git
-  location: https://github.com/nikita-volkov/pgenie-gen
+  location: https://github.com/pgenie-io/gen-contract
 
 common base
   default-language: Haskell2010
@@ -86,92 +87,20 @@ library
   import: base
   hs-source-dirs: library
   exposed-modules:
-    PGenieGen
-    PGenieGen.Fixtures.Project1
     PGenieGen.Model.Input
     PGenieGen.Model.Output
-    PGenieGen.Model.Output.Report
 
   other-modules:
-    PGenieGen.Bundle
-    PGenieGen.ContractVersion
-    PGenieGen.Dhall.Decode
     PGenieGen.Dhall.Deriving
-    PGenieGen.Dhall.ExprViews
     PGenieGen.Dhall.Orphans
     PGenieGen.Dhall.Orphans.NonEmpty
-    PGenieGen.Dhall.Orphans.Path
-    PGenieGen.Load
-    PGenieGen.Location
-    PGenieGen.Model
     PGenieGen.Model.Input.Name
     PGenieGen.Prelude
-    PGenieGen.Prelude.Path
 
   build-depends:
-    aeson,
-    algebraic-path ^>=0.1,
     base,
-    bytestring,
-    cases,
-    containers,
-    data-has,
     dhall ^>=1.42.3,
-    dhall-json ^>=1.7.2,
-    hashable,
-    lawful-conversions ^>=0.4,
-    microlens,
-    mtl,
-    pgenie-gen:aeson-deriver,
-    prettyprinter,
-    profunctors,
-    QuickCheck,
-    quickcheck-instances,
-    template-haskell,
     text,
-    text-builder,
-    text-builder-lawful-conversions ^>=0.1,
-    time,
-    tuple,
-    uuid,
-    vector,
-    vector-instances,
-    witherable,
-
-library aeson-deriver
-  import: base
-  hs-source-dirs: aeson-deriver
-  exposed-modules: AesonDeriver
-  build-depends:
-    aeson,
-    base,
-    cases,
-    template-haskell,
-    text,
-
-test-suite integration-test
-  import: test
-  type: exitcode-stdio-1.0
-  hs-source-dirs: integration-test
-  main-is: Main.hs
-  other-modules:
-  build-depends:
-    aeson,
-    hspec >=2.11 && <3,
-    pgenie-gen,
-    rerebase,
-
-test-suite bundling-test
-  import: test
-  type: exitcode-stdio-1.0
-  hs-source-dirs: bundling-test
-  main-is: Main.hs
-  other-modules:
-  build-depends:
-    aeson,
-    hspec >=2.11 && <3,
-    pgenie-gen,
-    rerebase,
 
 test-suite model-test
   import: test
@@ -180,8 +109,10 @@ test-suite model-test
   main-is: Main.hs
   other-modules:
   build-depends:
+    base,
+    containers,
     dhall ^>=1.42.3,
     either,
     hspec >=2.11 && <3,
-    pgenie-gen,
-    rerebase,
+    pgenie-gen-contract,
+    text,

@@ -1,11 +1,10 @@
 packages:
   ./haskell
 
-allow-newer: 
+allow-newer:
   , *:base
   , *:ghc-prim
   , *:template-haskell
-  , dhall-json:*
 
 source-repository-package
   type: git
