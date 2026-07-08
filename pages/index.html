@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Documentation hub for gen-sdk, a code generation SDK with Dhall and Haskell support">
-    <title>gen-sdk Documentation</title>
+    <meta name="description" content="Documentation for gen-contract, the Dhall pGenie generator contract">
+    <title>gen-contract Documentation</title>
     <style>
         * {
             margin: 0;
@@ -176,6 +176,7 @@
 
             .docs-grid {
                 grid-template-columns: 1fr;
+                max-width: 100%;
                 gap: 30px;
             }
 
@@ -188,39 +189,30 @@
 <body>
     <div class="container">
         <header>
-            <h1>gen-sdk</h1>
-            <p class="tagline">Code Generation SDK Documentation</p>
+            <h1>gen-contract</h1>
+            <p class="tagline">pGenie Generator Contract Documentation</p>
         </header>
 
         <div class="content">
             <div class="intro">
-                <p>Welcome to the gen-sdk documentation. Choose your language to get started.</p>
+                <p>Welcome to the gen-contract documentation: the Dhall schema every pGenie generator depends on.</p>
             </div>
 
             <div class="docs-grid">
                 <a href="./dhall/" class="doc-card" aria-label="View Dhall documentation">
                     <h2><img src="dhall-logo.svg" alt="Dhall logo" class="icon"> Dhall</h2>
                     <p>
-                        Explore the Dhall configuration language documentation for gen-sdk. 
-                        Learn about type-safe configuration and code generation using Dhall.
+                        Explore the Dhall documentation for gen-contract: the `Project` input model and the
+                        `module` constructor used by generator authors.
                     </p>
                     <span class="learn-more">View Dhall Docs</span>
-                </a>
-
-                <a href="./haskell/" class="doc-card" aria-label="View Haskell documentation">
-                    <h2><img src="haskell-logo.svg" alt="Haskell logo" class="icon"> Haskell</h2>
-                    <p>
-                        Browse the Haskell API documentation for gen-sdk. 
-                        Discover the complete API reference and learn how to use the library in your projects.
-                    </p>
-                    <span class="learn-more">View Haskell Docs</span>
                 </a>
             </div>
         </div>
 
         <footer>
             <p>
-                <a href="https://github.com/pgenie-io/gen-sdk" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+                <a href="https://github.com/pgenie-io/gen-contract" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
                 •
                 <a href="https://pgenie.io/" target="_blank" rel="noopener noreferrer">pgenie.io</a>
             </p>
