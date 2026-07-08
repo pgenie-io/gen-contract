@@ -13,7 +13,5 @@ let Output =
       < Ok : { warnings : List Report, value : List File } | Err : Report >
 
 in  \(Config : Type) ->
-    \ ( compile
-      : Optional Config -> Project.Project -> Output
-      ) ->
+    \(compile : Optional Config -> Project.Project -> Output) ->
       { contractVersion, Config, compile }
