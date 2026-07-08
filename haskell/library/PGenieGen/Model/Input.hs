@@ -291,4 +291,3 @@ data Project = Project
   }
   deriving stock (Show, Eq, Generic)
   deriving anyclass (Dhall.ToDhall, Dhall.FromDhall)
-

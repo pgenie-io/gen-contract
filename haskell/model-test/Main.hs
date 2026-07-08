@@ -15,82 +15,82 @@ import Prelude
 main :: IO ()
 main = hspec do
   describe "Dhall/Haskell model compatibility" do
-    it "Version record fields match"
-      $ checkRecordFields @Input.Version
+    it "Version record fields match" $
+      checkRecordFields @Input.Version
         "(../dhall/Project.dhall).Version"
 
-    it "ArraySettings record fields match"
-      $ checkRecordFields @Input.ArraySettings
+    it "ArraySettings record fields match" $
+      checkRecordFields @Input.ArraySettings
         "(../dhall/Project.dhall).ArraySettings"
 
-    it "Value record fields match"
-      $ checkRecordFields @Input.Value
+    it "Value record fields match" $
+      checkRecordFields @Input.Value
         "(../dhall/Project.dhall).Value"
 
-    it "Member record fields match"
-      $ checkRecordFields @Input.Member
+    it "Member record fields match" $
+      checkRecordFields @Input.Member
         "(../dhall/Project.dhall).Member"
 
-    it "EnumVariant record fields match"
-      $ checkRecordFields @Input.EnumVariant
+    it "EnumVariant record fields match" $
+      checkRecordFields @Input.EnumVariant
         "(../dhall/Project.dhall).EnumVariant"
 
-    it "CustomType record fields match"
-      $ checkRecordFields @Input.CustomType
+    it "CustomType record fields match" $
+      checkRecordFields @Input.CustomType
         "(../dhall/Project.dhall).CustomType"
 
-    it "ResultRows record fields match"
-      $ checkRecordFields @Input.ResultRows
+    it "ResultRows record fields match" $
+      checkRecordFields @Input.ResultRows
         "(../dhall/Project.dhall).ResultRows"
 
-    it "Var record fields match"
-      $ checkRecordFields @Input.Var
+    it "Var record fields match" $
+      checkRecordFields @Input.Var
         "(../dhall/Project.dhall).Var"
 
-    it "Query record fields match"
-      $ checkRecordFields @Input.Query
+    it "Query record fields match" $
+      checkRecordFields @Input.Query
         "(../dhall/Project.dhall).Query"
 
-    it "Project record fields match"
-      $ checkRecordFields @Input.Project
+    it "Project record fields match" $
+      checkRecordFields @Input.Project
         "(../dhall/Project.dhall).Project"
 
-    it "Primitive union alternatives match"
-      $ checkUnionAlternatives @Input.Primitive
+    it "Primitive union alternatives match" $
+      checkUnionAlternatives @Input.Primitive
         "(../dhall/Project.dhall).Primitive"
 
-    it "Scalar union alternatives match"
-      $ checkUnionAlternatives @Input.Scalar
+    it "Scalar union alternatives match" $
+      checkUnionAlternatives @Input.Scalar
         "(../dhall/Project.dhall).Scalar"
 
-    it "CustomTypeDefinition union alternatives match"
-      $ checkUnionAlternatives @Input.CustomTypeDefinition
+    it "CustomTypeDefinition union alternatives match" $
+      checkUnionAlternatives @Input.CustomTypeDefinition
         "(../dhall/Project.dhall).CustomTypeDefinition"
 
-    it "ResultRowsCardinality union alternatives match"
-      $ checkUnionAlternatives @Input.ResultRowsCardinality
+    it "ResultRowsCardinality union alternatives match" $
+      checkUnionAlternatives @Input.ResultRowsCardinality
         "(../dhall/Project.dhall).ResultRowsCardinality"
 
-    it "Result union alternatives match"
-      $ checkUnionAlternatives @Input.Result
+    it "Result union alternatives match" $
+      checkUnionAlternatives @Input.Result
         "(../dhall/Project.dhall).Result"
 
-    it "QueryFragment union alternatives match"
-      $ checkUnionAlternatives @Input.QueryFragment
+    it "QueryFragment union alternatives match" $
+      checkUnionAlternatives @Input.QueryFragment
         "(../dhall/Project.dhall).QueryFragment"
 
-    it "ResultRowsCardinality Optional serializes/deserializes"
-      $ checkSerialization
+    it "ResultRowsCardinality Optional serializes/deserializes" $
+      checkSerialization
         Input.OptionalResultRowsCardinality
         "(../dhall/Project.dhall).ResultRowsCardinality.Optional"
 
-    it "Result RowsAffected serializes/deserializes"
-      $ checkSerialization
+    it "Result RowsAffected serializes/deserializes" $
+      checkSerialization
         Input.RowsAffectedResult
         "(../dhall/Project.dhall).Result.RowsAffected"
 
-    it "Scalar Primitive payload serializes/deserializes"
-      $ checkSerialization
+    it "Scalar Primitive payload serializes/deserializes" $
+      checkSerialization
         (Input.PrimitiveScalar Input.Int4Primitive)
         "(../dhall/Project.dhall).Scalar.Primitive (../dhall/Project.dhall).Primitive.Int4"
 
