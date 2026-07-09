@@ -232,5 +232,8 @@ in  { Project
     , QueryFragment
     , QueryFragments
     , Query
+    , Report
+    , File
+    , Output
     , module
     }
