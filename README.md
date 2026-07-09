@@ -2,10 +2,7 @@
 
 [![Continuous Docs for Dhall](https://img.shields.io/badge/dhall_docs-master-blue)](https://pgenie-io.github.io/gen-contract/)
 
-Minimal contract repository for [pGenie](https://pgenie.io) code generators.
-
-This repository versions the *implicit concept* of the pGenie generator contract:
-a single Dhall package, entirely self-contained, that every generator depends on.
+Contract repository for [pGenie](https://pgenie.io) code generators.
 
 ## Structure
 
