@@ -8,9 +8,16 @@ Contract repository for [pGenie](https://pgenie.io) code generators.
 
 ### `src/`
 
-The entry point and only file is `package.dhall`, which exposes:
+The entry point and only file is `package.dhall`. It is the complete pGenie generator contract: a set of Dhall types describing the generator input model, plus the `module` constructor used to assemble a generator module.
 
-- **`Project`** — the input model describing a PostgreSQL project: queries, custom types, primitive types, migrations, and related metadata
+Key exports include:
+
+- **`Project`** — the input model describing a PostgreSQL project: space, name, version, custom types, queries, and migrations
+- **`Query`** — a single SQL query with its parsed fragments, parameters, and result shape
+- **`CustomType`** / **`CustomTypeDefinition`** — user-defined composite, enum, and domain types
+- **`Member`** / **`Value`** / **`Scalar`** / **`Primitive`** — the type hierarchy for columns and parameters
+- **`Result`** / **`ResultRows`** / **`ResultRowsCardinality`** — the possible result shapes of a query
+- **`Report`** / **`File`** / **`Output`** — the output model returned by a generator
 - **`module`** — the constructor used to assemble a generator module from a contract version, a config type, and a compile function
 
 A minimal generator looks like this:

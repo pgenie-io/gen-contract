@@ -1,6 +1,6 @@
 # Upcoming
 
-## Non-breaking
+## Patches
 
 - Export `Report`, `File`, and `Output` at the top level of `src/package.dhall`,
   alongside `Project` and its constituent types. Previously these were

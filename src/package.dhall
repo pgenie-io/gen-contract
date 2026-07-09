@@ -1,6 +1,8 @@
 -- | The pGenie generator contract: the codegen API model used as input to
 -- generators, and the `module` constructor used to assemble a generator
 -- module from a contract version, a config type, and a compile function.
+let contractVersion = { major = 4, minor = 0 }
+
 let NonEmpty
     : Type -> Type
     = \(a : Type) -> { head : a, tail : List a }
@@ -199,8 +201,6 @@ let Project =
       , queries : List Query
       , migrations : List Migration
       }
-
-let contractVersion = { major = 4, minor = 0 }
 
 let Report = { path : List Text, message : Text }
 

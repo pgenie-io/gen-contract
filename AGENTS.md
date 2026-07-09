@@ -14,12 +14,12 @@ This repository is the minimal pGenie generator contract repository.
   back into multiple files.
 - The Haskell model projection of this contract
   (`PGenieGen.Model.Input` / `PGenieGen.Model.Output`) now lives in the
-  [`pgenie`](https://github.com/nikita-volkov/pgenie) repo. When changing the
+  [`pgenie`](https://github.com/pgenie-io/pgenie) repo. When changing the
   shape of `Project` here, update that projection and its compatibility test
   there too.
 - Prefer Dhall formatting and validation for `src/package.dhall` changes.
 
 ## Validation
 
-- Use `./build.bash` for the repo's full build path (type-checks
+- Use `dhall type --file "src/package.dhall"` for the repo's full build path (type-checks
   `src/package.dhall`).
