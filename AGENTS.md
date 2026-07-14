@@ -18,6 +18,7 @@ This repository is the minimal pGenie generator contract repository.
   shape of `Project` here, update that projection and its compatibility test
   there too.
 - Prefer Dhall formatting and validation for `src/package.dhall` changes.
+- Never reference another `pgenie-io` repository via a local filesystem path. If this repo ever needs to depend on a sibling repo, use a pinned remote import (`https://raw.githubusercontent.com/pgenie-io/<repo>/<tag>/...` with a `sha256`), never a `../sibling-repo/...` path.
 
 ## Validation
 
