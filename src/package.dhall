@@ -175,19 +175,18 @@ let Scalar =
     -- `Custom` - a project-defined type, referenced by `CustomTypeRef`.
       < Primitive : Primitive | Custom : CustomTypeRef >
 
-let ArraySettings =
-      { -- | The array's nesting depth: `1` for `T[]`, `2` for `T[][]`, etc.
-        dimensionality : Natural
+let Value =
+    -- | The type of a column or parameter: a scalar, optionally wrapped in
+    -- `dimensionality` levels of array nesting (`1` for `T[]`, `2` for
+    -- `T[][]`, etc.). `dimensionality = 0` means a bare scalar value, in
+    -- which case `elementIsNullable` is meaningless and must be ignored.
+      { dimensionality : Natural
       , -- | Whether individual array elements may be SQL NULL, independent
         -- of the containing value's own nullability (`Member.isNullable`).
+        -- Meaningless when `dimensionality = 0`.
         elementIsNullable : Bool
+      , scalar : Scalar
       }
-
-let Value =
-    -- | The type of a column or parameter: an optional array wrapper
-    -- around a scalar. `arraySettings = None` means a bare scalar value;
-    -- `Some` means an array of the given dimensionality.
-      { arraySettings : Optional ArraySettings, scalar : Scalar }
 
 let Member =
     -- | A single field of a composite type, or a query parameter/result
@@ -334,7 +333,6 @@ in  { Project
     , Name
     , Primitive
     , Scalar
-    , ArraySettings
     , Value
     , EnumVariant
     , CustomTypeDefinition
