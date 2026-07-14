@@ -1,3 +1,10 @@
+# Upcoming
+
+## Breaking
+
+- `Scalar`'s `Custom` alternative now carries a `CustomTypeRef` (`{ name, pgSchema, pgName, index }`) instead of a bare `Name`. `index` points into `Project.customTypes`, making custom-type references resolvable in Dhall — a generator can look up the referenced type's `CustomTypeDefinition` and authentic `pgSchema`/`pgName` directly, instead of only knowing its identifier (Dhall has no `Text` equality/inspection, so name-only references were previously opaque).
+- New contract invariant: `Project.customTypes` must be topologically sorted — every index reachable from `customTypes[i]` is `< i`, ties broken alphabetically by `pgSchema` then `pgName`. This is not enforced by the type system; producers (the pgenie CLI) must uphold it, and consumers (generators) may rely on it for cheap left-fold transitive analysis instead of recursion.
+
 # v4.0.1
 
 ## Patches
