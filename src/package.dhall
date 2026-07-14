@@ -1,7 +1,7 @@
 -- | The pGenie generator contract: the codegen API model used as input to
 -- generators, and the `module` constructor used to assemble a generator
 -- module from a contract version, a config type, and a compile function.
-let contractVersion = { major = 4, minor = 0 }
+let contractVersion = { major = 5, minor = 0 }
 
 let NonEmpty
     : Type -> Type
@@ -148,7 +148,10 @@ let Primitive =
       | Xml
       >
 
-let Scalar = < Primitive : Primitive | Custom : Name >
+let CustomTypeRef =
+      { name : Name, pgSchema : Text, pgName : Text, index : Natural }
+
+let Scalar = < Primitive : Primitive | Custom : CustomTypeRef >
 
 let ArraySettings = { dimensionality : Natural, elementIsNullable : Bool }
 
@@ -224,6 +227,7 @@ in  { Project
     , EnumVariant
     , CustomTypeDefinition
     , CustomType
+    , CustomTypeRef
     , Member
     , ResultRowsCardinality
     , ResultRows
